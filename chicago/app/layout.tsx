@@ -21,7 +21,9 @@ const RootLayout: React.FC<RootLayoutProps> = ({ children }) => {
     <html lang="en">
       <body className={`flex flex-col min-h-screen ${inter.className}`}>
         <Header/>
-        <Main children={children}/>
+        <Main>
+          {children}
+        </Main>
         <Footer/>
       </body>
     </html>

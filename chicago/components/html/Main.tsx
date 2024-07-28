@@ -4,7 +4,7 @@ interface MainProps {
 
 const Main: React.FC<MainProps> = ({ children }) => {
     return (
-        <main className="flex-grow p-4">
+        <main className="bg-primary-content flex-grow p-4">
             {children}
         </main>
     );

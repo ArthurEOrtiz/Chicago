@@ -1,13 +1,16 @@
+import { MapComponent } from '@/components/map';
+import MapProvider from '@/providers/map-provider';
+import React from 'react';
 
 
 const Home: React.FC = () => {
-  return (
-    <>
-      <h1>Home Page</h1>
-      <button className="btn btn-primary">Click Me</button> 
-    </>
-  );
-}
+    return (
+      <MapProvider>
+        <MapComponent />
+      </MapProvider>
+    )
+ 
+  
+};
 
 export default Home;
-
