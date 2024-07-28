@@ -7,6 +7,12 @@ we need to make this component client rendered as well else error occurs
 //Map component Component from library
 import { GoogleMap } from "@react-google-maps/api";
 
+
+interface MapComponentProps {
+    children?: React.ReactNode;
+}
+
+
 //Map's styling
 export const defaultMapContainerStyle = {
     width: '100%',
@@ -21,7 +27,7 @@ export const defaultCenter = {
 };
 
 // Map Zoom
-export const defaultZoom = 10;
+export const defaultZoom = 10.5;
 
 // Map Options
 export const defaultOptions = {
@@ -31,7 +37,7 @@ export const defaultOptions = {
     mapTypeId: 'roadmap',
 };
 
-const MapComponent: React.FC = () => {
+const MapComponent: React.FC<MapComponentProps> = ({children}) => {
     return (
         <div className="w-full">
             <GoogleMap 
@@ -39,6 +45,7 @@ const MapComponent: React.FC = () => {
                 center={defaultCenter}
                 zoom={defaultZoom}
                 options={defaultOptions}>
+                    {children}
             </GoogleMap>
         </div>
     )
