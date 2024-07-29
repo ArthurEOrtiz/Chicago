@@ -1,4 +1,4 @@
-export type Stop = {
+interface Stop {
     stop_id: string;
     direction_id: string;
     station_name: string;

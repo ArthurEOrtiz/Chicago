@@ -11,7 +11,7 @@ const InfoWindowComponent: React.FC<InfoWindowComponentProps> = ({ title, positi
         <InfoWindowF
             position={position}
             zIndex={1}
-            options={{ pixelOffset: new google.maps.Size(0, -30) }}
+            options={{ pixelOffset: new google.maps.Size(0, 0) }}
         >
           
                 <h2 className="font-bold text-black">{title}</h2>

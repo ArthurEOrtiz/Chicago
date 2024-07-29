@@ -1,29 +1,29 @@
 "use client";
 import MapProvider from "@/providers/map-provider";
 import { MapComponent } from "./map";
+import { InfoWindowComponent } from "./infoWindo";
 
 interface MapControllerProps {
-    data: any;
+    stations: Station[];
 }
-const MapController: React.FC<MapControllerProps> = ({ data }) => {
+const MapController: React.FC<MapControllerProps> = ({ stations }) => {
     return (
         <MapProvider>
             <MapComponent>
-                {data.map((item: any, index: number) => {
+                {stations.map((item: Station, index: number) => {
+                    const [lng, lat] = item.coordinates.split(',').map(Number);
+                    const position: google.maps.LatLngLiteral = { lat, lng };
                     return (
-                        <MarkerComponent
+                        <InfoWindowComponent
                             key={index}
-                            position={{ lat: item.lat, lng: item.lng }}
-                            title={item.title}
-                        >
-                            <InfoWindowComponent
-                                title={item.title}
-                                position={{ lat: item.lat, lng: item.lng }}
-                            />
-                        </MarkerComponent>
+                            title={item.LONGNAME}
+                            position={position}
+                        />
                     );
                 })}
             </MapComponent>
         </MapProvider>
     );
 };
+
+export { MapController };
