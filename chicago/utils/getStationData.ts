@@ -1,5 +1,5 @@
 export const getStationData = async () => {
-    const response = await fetch('https://data.cityofchicago.org/resource/8pix-ypme.json');
+    const response = await fetch('/api/stations');
     if (!response.ok) {
         throw new Error('Failed to fetch station data');
     }

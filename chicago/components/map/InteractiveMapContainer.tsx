@@ -1,22 +1,35 @@
 'use client';   
 import React, { useState, useRef, useEffect, use } from 'react';
 import { MapController } from '@/components/map/mapControl';
-import stations from '@/data/stations.json';
 import { getStationArrivals } from '@/utils/getStationArrivals';
 import Eta from '../cta/eta';
 import ErrorModal from '../modals/error';
+import { getStationData } from '@/utils/getStationData';
 
 const InteractiveMapContainer: React.FC = () => {
-    const [selectedStation, setSelectedStation] = useState<Station | null>(null);
+    const [ stations, setStations ] = useState<Station[]>([]);
+    const [ selectedStation, setSelectedStation ] = useState<Station | null>(null);
     const [ arrivals, setArrivals ] = useState<CtaApiResponse | null>(null);
     const [ loadingArrivals, setLoadingArrivals ] = useState<boolean>(false);
+    const [ loadingStations, setLoadingStations ] = useState<boolean>(false);
     const [ error, setError ] = useState<string | null>(null);
     const stationRefs = useRef<(HTMLDivElement | null)[]>([]);
     const containerRef = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
-        if (!selectedStation) return;
-        const mapId = selectedStation.GTFS;
+        setLoadingStations(true);
+        getStationData()
+            .then(data => {
+                setStations(data);
+            })
+            .catch(error => setError(error))
+            .finally(() => setLoadingStations(false));
+    }, []);
+ 
+
+    useEffect(() => {
+        if (!selectedStation ) return;
+        const mapId = selectedStation.map_id;
         setLoadingArrivals(true);
         getStationArrivals(mapId)
             .then(data => {
@@ -55,14 +68,19 @@ const InteractiveMapContainer: React.FC = () => {
                     <MapController stations={stations} onStationClick={handleStationClick} />
                 </div>
                 <div ref={containerRef} className="md:w-1/3 p-4 overflow-y-auto h-[50vh]  rounded-xl bg-primary">
-                    {stations.map((station: Station, index: number) => (
+                    {loadingStations && 
+                        <div className="flex justify-center items-center h-full ">
+                            <span className='loading loading-spinner loading-lg'></span>
+                        </div>
+                    }
+                    {stations && stations.map((station: Station, index: number) => (
                         <div 
-                        key={index}
-                        ref={(el) => { stationRefs.current[index] = el; }}
-                        onClick={() => handleStationClick(station, index)}
-                        className={`p-2 cursor-pointer ${selectedStation?.STATION_ID === station.STATION_ID ? 'bg-secondary rounded-xl' : ''}`}
+                            key={index}
+                            ref={(el) => { stationRefs.current[index] = el; }}
+                            onClick={() => handleStationClick(station, index)}
+                            className={`p-2 cursor-pointer ${selectedStation?.map_id === station.map_id ? 'bg-secondary rounded-xl' : ''}`}
                         >
-                            <h2 className="text-xl font-bold">{station.LONGNAME}</h2>
+                            <h2 className="text-xl font-bold">{station.station_name}</h2>
                         </div>
                     ))}
                 </div>
@@ -81,7 +99,7 @@ const InteractiveMapContainer: React.FC = () => {
                                 <span className='loading loading-spinner loading-lg'></span>
                             </div>
                         ) : arrivals ? (
-                            arrivals.ctatt?.eta?.length > 0 ? (
+                            arrivals.ctatt.eta.length > 0 ? (
                                 arrivals.ctatt.eta.map((eta: Eta, index: number) => (
                                         <Eta key={index} eta={eta} />
                                     )

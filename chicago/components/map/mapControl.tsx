@@ -11,14 +11,16 @@ const MapController: React.FC<MapControllerProps> = ({ stations, onStationClick 
         <MapProvider>
             <MapComponent
             >
-                {stations.map((item: Station, index: number) => {
-                    const [lng, lat] = item.coordinates.split(',').map(Number);
-                    const position: google.maps.LatLngLiteral = { lat, lng };
+                {stations.map((station: Station, index: number) => {
+                    const { latitude, longitude } = station.location;
+                    const lat = parseFloat(latitude);
+                    const lng = parseFloat(longitude);
+                    const position: google.maps.LatLngLiteral = { lat , lng };
                     return (
                         <MarkerComponent
                             key={index}
                             position={position}
-                            onClick={() => onStationClick(item, index)}
+                            onClick={() => onStationClick(station, index)}
                         />
                     );
                 })}
