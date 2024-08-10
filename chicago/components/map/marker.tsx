@@ -3,14 +3,17 @@ import { MarkerF } from "@react-google-maps/api";
 
 interface MarkerComponentProps {
     position: google.maps.LatLngLiteral;
-    title?: string;
+    icon?: string;
+    onClick?: () => void;
 }
 
-const MarkerComponent: React.FC<MarkerComponentProps> = ({ position, title }) => {
+const MarkerComponent: React.FC<MarkerComponentProps> = ({ position, icon, onClick }) => {
     return (
         <MarkerF 
             position={position} 
-            title={title}
+            onClick={onClick}
+            clickable={true}
+            icon={icon}
         />
     );
 };
