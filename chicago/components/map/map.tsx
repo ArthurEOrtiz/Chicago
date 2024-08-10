@@ -2,7 +2,7 @@
 Since the map was loaded on client side, 
 we need to make this component client rendered as well else error occurs
 */
-'use client'
+// 'use client'  // I commented this line out because the parent component it marked as client
 
 //Map component Component from library
 import { GoogleMap } from "@react-google-maps/api";
@@ -16,7 +16,7 @@ interface MapComponentProps {
 //Map's styling
 export const defaultMapContainerStyle = {
     width: '100%',
-    height: '80vh',
+    height: '50vh',
     borderRadius: '15px 15px 15px 15px',
 };
 

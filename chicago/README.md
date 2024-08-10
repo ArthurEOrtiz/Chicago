@@ -1,3 +1,6 @@
 # Chicago 
 - diasyui
-- Google Maps
+- tailwindCSS
+- Google Maps Api
+- CTA Train Api 
+- Moment-Timezone

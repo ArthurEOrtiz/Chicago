@@ -1,0 +1,3 @@
+interface CtaApiResponse {
+    ctatt: Ctatt;
+}
