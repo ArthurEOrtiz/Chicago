@@ -3,7 +3,7 @@ import InteractiveMapContainer from '@/components/map/InteractiveMapContainer';
 
 const Home: React.FC = async () => {
   return (
-    <InteractiveMapContainer/>
+    <InteractiveMapContainer />
   );
 };
 

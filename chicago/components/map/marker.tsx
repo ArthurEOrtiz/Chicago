@@ -1,19 +1,19 @@
-import { MarkerF } from "@react-google-maps/api";
+import { AdvancedMarker } from "@vis.gl/react-google-maps";
 
 interface MarkerComponentProps {
+    children?: React.ReactNode;
     position: google.maps.LatLngLiteral;
-    icon?: string;
     onClick?: () => void;
 }
 
-const MarkerComponent: React.FC<MarkerComponentProps> = ({ position, icon, onClick }) => {
+const MarkerComponent: React.FC<MarkerComponentProps> = ({ children, position, onClick }) => {
     return (
-        <MarkerF 
-            position={position} 
+        <AdvancedMarker
+            position={position}
             onClick={onClick}
-            clickable={true}
-            icon={icon}
-        />
+        >
+            {children}
+        </AdvancedMarker>
     );
 };
 

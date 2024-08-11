@@ -1,5 +1,5 @@
 'use client';   
-import React, { useState, useRef, useEffect, use } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { MapController } from '@/components/map/mapControl';
 import { getStationArrivals } from '@/utils/getStationArrivals';
 import Eta from '../cta/eta';

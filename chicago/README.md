@@ -1,6 +1,6 @@
 # Chicago 
 - diasyui
 - tailwindCSS
-- Google Maps Api
+- React-Google-Maps, https://visgl.github.io/react-google-maps/
 - CTA Train Api 
 - Moment-Timezone

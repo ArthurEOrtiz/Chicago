@@ -1,5 +1,5 @@
-import MapProvider from "@/components/providers/map-provider";
-import { MapComponent } from "./map";
+import { MapAPI } from "../providers/map-api";
+import { MapComponent } from "./map-component";
 import { MarkerComponent } from "./marker";
 
 interface MapControllerProps {
@@ -8,9 +8,8 @@ interface MapControllerProps {
 }
 const MapController: React.FC<MapControllerProps> = ({ stations, onStationClick }) => {
     return (
-        <MapProvider>
-            <MapComponent
-            >
+        <MapAPI>
+            <MapComponent>
                 {stations.map((station: Station, index: number) => {
                     const { latitude, longitude } = station.location;
                     const lat = parseFloat(latitude);
@@ -25,7 +24,7 @@ const MapController: React.FC<MapControllerProps> = ({ stations, onStationClick 
                     );
                 })}
             </MapComponent>
-        </MapProvider>
+        </MapAPI>
     );
 };
 

@@ -7,8 +7,7 @@ export async function GET(req: NextRequest) {
     }
 
     const stops = await response.json();
-
-    // Group stops by their parent station
+  
     const stations = stops.reduce((acc: any, stop: any) => {
         const mapId = stop.map_id;
         if (!acc[mapId]) {
