@@ -1,4 +1,3 @@
-"use client";   
 import { MarkerF } from "@react-google-maps/api";
 
 interface MarkerComponentProps {
