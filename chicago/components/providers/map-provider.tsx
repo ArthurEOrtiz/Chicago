@@ -16,7 +16,11 @@ const MapProvider: React.FC<MapProviderProps> = ({ children }) => {
 
   if (loadError) return <p>Encountered error while loading google maps</p>;
 
-  if (!isLoaded) return <p>Map Script is loading ...</p>;
+  if (!isLoaded) return (
+    <div className="flex justify-center items-center h-full">
+        <span className='loading loading-spinner loading-lg'></span>
+    </div>
+  );
 
   return <>{children}</>;
 };

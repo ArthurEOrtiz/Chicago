@@ -11,13 +11,12 @@ const InteractiveMapContainer: React.FC = () => {
     const [ selectedStation, setSelectedStation ] = useState<Station | null>(null);
     const [ arrivals, setArrivals ] = useState<CtaApiResponse | null>(null);
     const [ loadingArrivals, setLoadingArrivals ] = useState<boolean>(false);
-    const [ loadingStations, setLoadingStations ] = useState<boolean>(false);
+    const [ loadingStations, setLoadingStations ] = useState<boolean>(true);
     const [ error, setError ] = useState<string | null>(null);
     const stationRefs = useRef<(HTMLDivElement | null)[]>([]);
     const containerRef = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
-        setLoadingStations(true);
         getStationData()
             .then(data => {
                 setStations(data);

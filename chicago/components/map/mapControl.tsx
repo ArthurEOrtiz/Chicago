@@ -1,4 +1,4 @@
-import MapProvider from "@/providers/map-provider";
+import MapProvider from "@/components/providers/map-provider";
 import { MapComponent } from "./map";
 import { MarkerComponent } from "./marker";
 
