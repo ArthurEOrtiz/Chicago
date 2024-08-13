@@ -24,16 +24,14 @@ const MapComponent: React.FC<MapComponentProps> = ({children}) => {
     const mapId = process.env.NEXT_PUBLIC_GOOGLE_MAPS_MAP_ID as string;
 
     return (
-      
-            <Map 
-                mapId={mapId}
-                defaultCenter={defaultCenter}
-                defaultZoom={defaultZoom}
-                tilt={0}
-            >
-                    {children}
-            </Map>
-  
+        <Map 
+            mapId={mapId}
+            defaultCenter={defaultCenter}
+            defaultZoom={defaultZoom}
+            tilt={0}
+        >
+                {children}
+        </Map>
     )
 };
 

@@ -1,6 +1,7 @@
-import { MapAPI } from "../providers/map-api";
+import { MapAPI } from "./map-api";
 import { MapComponent } from "./map-component";
-import { MarkerComponent } from "./marker";
+import { MarkerComponent } from "./marker-component";
+import { PinComponent } from "./pin-component";
 
 interface MapControllerProps {
     stations: Station[];
@@ -11,16 +12,14 @@ const MapController: React.FC<MapControllerProps> = ({ stations, onStationClick 
         <MapAPI>
             <MapComponent>
                 {stations.map((station: Station, index: number) => {
-                    const { latitude, longitude } = station.location;
-                    const lat = parseFloat(latitude);
-                    const lng = parseFloat(longitude);
-                    const position: google.maps.LatLngLiteral = { lat , lng };
                     return (
                         <MarkerComponent
                             key={index}
-                            position={position}
+                            station={station}
                             onClick={() => onStationClick(station, index)}
-                        />
+                        >
+                            <PinComponent station={station} />
+                        </MarkerComponent>  
                     );
                 })}
             </MapComponent>

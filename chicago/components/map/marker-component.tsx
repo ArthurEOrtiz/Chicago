@@ -2,11 +2,16 @@ import { AdvancedMarker } from "@vis.gl/react-google-maps";
 
 interface MarkerComponentProps {
     children?: React.ReactNode;
-    position: google.maps.LatLngLiteral;
+    station: Station;
     onClick?: () => void;
 }
 
-const MarkerComponent: React.FC<MarkerComponentProps> = ({ children, position, onClick }) => {
+const MarkerComponent: React.FC<MarkerComponentProps> = ({ children, station, onClick }) => {
+    const { latitude, longitude } = station.location;
+    const lat = parseFloat(latitude);
+    const lng = parseFloat(longitude);
+    const position: google.maps.LatLngLiteral = { lat , lng };
+    
     return (
         <AdvancedMarker
             position={position}

@@ -1,6 +1,6 @@
 'use client';   
 import React, { useState, useRef, useEffect } from 'react';
-import { MapController } from '@/components/map/mapControl';
+import { MapController } from '@/components/map/map-controller';
 import { getStationArrivals } from '@/utils/getStationArrivals';
 import Eta from '../cta/eta';
 import ErrorModal from '../modals/error';
@@ -84,7 +84,7 @@ const InteractiveMapContainer: React.FC = () => {
                     ))}
                 </div>
             </div>
-            <div className="bg-secondary rounded-xl p-2 space-y-2">
+            <div className="bg-secondary rounded-xl p-2 space-y-2 h-[40vh] overflow-y-auto">
                 <div>
                     {/* Arrivals header */}
                     <h2 className="text-4xl font-bold ml-2">Arrivals</h2>
