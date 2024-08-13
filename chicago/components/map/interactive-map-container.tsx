@@ -39,7 +39,7 @@ const InteractiveMapContainer: React.FC = () => {
                 }
                 setArrivals(data);
             })
-            .catch(error => console.error(error))
+            .catch(error => setError(error))
             .finally(() => setLoadingArrivals(false));
 
     }, [selectedStation]);
@@ -84,14 +84,14 @@ const InteractiveMapContainer: React.FC = () => {
                     ))}
                 </div>
             </div>
-            <div className="bg-secondary rounded-xl p-2 space-y-2 h-[40vh] overflow-y-auto">
+            <div className="bg-secondary rounded-xl p-2 space-y-2 ">
                 <div>
                     {/* Arrivals header */}
                     <h2 className="text-4xl font-bold ml-2">Arrivals</h2>
                 </div>
                 <div>
                     {/* Arrivals main */}
-                    <div className='space-y-2'>
+                    <div className='space-y-2 h-[35vh] overflow-y-auto'>
                         {/* Arrivals list */}
                         { loadingArrivals ? (
                             <div className="p-2 rounded-xl bg-gray-500 flex justify-center">
