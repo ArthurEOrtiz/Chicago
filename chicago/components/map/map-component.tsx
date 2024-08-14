@@ -4,13 +4,6 @@ interface MapComponentProps {
     children?: React.ReactNode;
 }
 
-//Map's styling
-export const style: React.CSSProperties = {
-    width: '100%',
-    height: '50vh',
-    borderRadius: '15px 15px 15px 15px',
-};
-
 // Map Center 
 export const defaultCenter = {
     lat: 41.8781,
@@ -28,7 +21,6 @@ const MapComponent: React.FC<MapComponentProps> = ({children}) => {
             mapId={mapId}
             defaultCenter={defaultCenter}
             defaultZoom={defaultZoom}
-            style={style}
         >
             {children}
         </Map>

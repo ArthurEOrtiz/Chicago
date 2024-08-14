@@ -14,6 +14,7 @@ const MarkerComponent: React.FC<MarkerComponentProps> = ({ children, station, on
     
     return (
         <AdvancedMarker
+            title={station.station_descriptive_name}
             position={position}
             onClick={onClick}
         >

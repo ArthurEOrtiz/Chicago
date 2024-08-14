@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(req: NextRequest) {
     const response = await fetch(`https://data.cityofchicago.org/resource/8pix-ypme.json?`);
+    
     if (!response.ok) {
         return NextResponse.json({ error: 'Failed to fetch station data' }, { status: response.status });
     }
