@@ -5,6 +5,7 @@ import { getStationArrivals } from '@/utils/getStationArrivals';
 import ErrorModal from '../modals/error';
 import { getStationData } from '@/utils/getStationData';
 import { ArrivalsList } from './arrivals-list';
+import { StationList } from './station-list';
 
 const InteractiveMapContainer: React.FC = () => {
     const [ stations, setStations ] = useState<Station[]>([]);
@@ -65,22 +66,27 @@ const InteractiveMapContainer: React.FC = () => {
                 <div className="md:w-2/3">
                     <MapController stations={stations} onStationClick={handleStationClick} />
                 </div>
-                <div ref={containerRef} className="md:w-1/3 p-4 overflow-y-auto h-[50vh]  rounded-xl bg-primary">
+                <div className="md:w-1/3 p-4 rounded-xl bg-primary">
+                    <h2 className="text-4xl font-bold">Stations</h2>
                     {loadingStations && 
                         <div className="flex justify-center items-center h-full ">
                             <span className='loading loading-spinner loading-lg'></span>
                         </div>
                     }
-                    {stations && stations.map((station: Station, index: number) => (
-                        <div 
-                            key={index}
-                            ref={(el) => { stationRefs.current[index] = el; }}
-                            onClick={() => handleStationClick(station, index)}
-                            className={`p-2 cursor-pointer ${selectedStation?.map_id === station.map_id ? 'bg-secondary rounded-xl' : ''}`}
-                        >
-                            <h2 className="text-xl font-bold">{station.station_name}</h2>
-                        </div>
-                    ))}
+                    <div ref={containerRef} className="overflow-y-auto h-[50vh]">
+                        {stations && (
+                            <StationList 
+                                stations={stations} 
+                                selectedStation={selectedStation} 
+                                ref={(el: HTMLDivElement | null) => {
+                                    if (el) {
+                                        stationRefs.current.push(el);
+                                    }
+                                }}
+                                onStationClick={handleStationClick}
+                            />
+                        )}
+                    </div>
                 </div>
             </div>
             <div className="bg-secondary rounded-xl p-2 space-y-2 ">
