@@ -2,9 +2,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { MapController } from '@/components/map/map-controller';
 import { getStationArrivals } from '@/utils/getStationArrivals';
-import Eta from '../cta/eta';
 import ErrorModal from '../modals/error';
 import { getStationData } from '@/utils/getStationData';
+import { ArrivalsList } from './arrivals-list';
 
 const InteractiveMapContainer: React.FC = () => {
     const [ stations, setStations ] = useState<Station[]>([]);
@@ -24,7 +24,6 @@ const InteractiveMapContainer: React.FC = () => {
             .catch(error => setError(error))
             .finally(() => setLoadingStations(false));
     }, []);
- 
 
     useEffect(() => {
         if (!selectedStation ) return;
@@ -93,26 +92,7 @@ const InteractiveMapContainer: React.FC = () => {
                     {/* Arrivals main */}
                     <div className='space-y-2 h-[35vh] overflow-y-auto'>
                         {/* Arrivals list */}
-                        { loadingArrivals ? (
-                            <div className="p-2 rounded-xl bg-gray-500 flex justify-center">
-                                <span className='loading loading-spinner loading-lg'></span>
-                            </div>
-                        ) : arrivals ? (
-                            arrivals.ctatt.eta.length > 0 ? (
-                                arrivals.ctatt.eta.map((eta: Eta, index: number) => (
-                                        <Eta key={index} eta={eta} />
-                                    )
-                                )
-                            ) : (
-                                <div className="p-2 rounded-xl bg-error-content">
-                                    <p className='text-error'>No arrivals found.</p>
-                                </div>
-                            )
-                        ) : (
-                            <div className="p-2 rounded-xl bg-warning-content">
-                                <p className='text-warning'>Select a station on the map or the list.</p>
-                            </div>
-                        )}
+                        <ArrivalsList loadingArrivals={loadingArrivals} arrivals={arrivals} />
                     </div>
                 </div>
             </div>

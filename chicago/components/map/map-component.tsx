@@ -28,9 +28,9 @@ const MapComponent: React.FC<MapComponentProps> = ({children}) => {
             mapId={mapId}
             defaultCenter={defaultCenter}
             defaultZoom={defaultZoom}
-            tilt={0}
+            style={style}
         >
-                {children}
+            {children}
         </Map>
     )
 };

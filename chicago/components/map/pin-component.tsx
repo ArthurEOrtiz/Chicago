@@ -21,12 +21,20 @@ const PinComponent: React.FC<PinComponentProps> = ({ station }) => {
             if (stop.o) colors.add('orange');
         });
 
-        if (colors.size > 2) {
-            return {
-                background: 'gray',
-                borderColor: 'black',
-                glyphColor: 'white'
-            };
+        if (colors.size > 1) {
+            if (colors.has('purple') && colors.has('purple express')) {
+                return {
+                    background: '#522398',
+                    borderColor: '#4b004b',
+                    glyphColor: '#b266b2'
+                };
+            } else {
+                return {
+                    background: 'gray',
+                    borderColor: 'black',
+                    glyphColor: 'white'
+                };
+            }
         }
 
         const color = colors.values().next().value;
@@ -51,26 +59,19 @@ const PinComponent: React.FC<PinComponentProps> = ({ station }) => {
                 };
             case 'brown':
                 return {
-                    background: '#8b4513',
+                    background: '#62361b',
                     borderColor: '#5a2e0d',
                     glyphColor: '#a0522d'
                 };
-            case 'purple':
-            case 'purple express':
-                return {
-                    background: '#800080',
-                    borderColor: '#4b004b',
-                    glyphColor: '#b266b2'
-                };
             case 'yellow':
                 return {
-                    background: '#ffff00',
+                    background: '#f9e300',
                     borderColor: '#b2b200',
                     glyphColor: '#ffff66'
                 };
             case 'pink':
                 return {
-                    background: '#ff69b4',
+                    background: '#e27ea6',
                     borderColor: '#b2447d',
                     glyphColor: '#ff85c1'
                 };
