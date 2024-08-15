@@ -75,12 +75,16 @@ const InteractiveMapContainer: React.FC = () => {
             {/* Main container */}  
             <div className="flex flex-col md:flex-row space-x-2">
                 <div className="md:w-2/3">
-                    <MapController stations={filteredStations} onStationClick={handleStationClick} />
+                    <MapController 
+                        arrivals={arrivals}
+                        stations={filteredStations} 
+                        onStationClick={handleStationClick}
+                    />
                 </div>
                 <div className="md:w-1/3 p-4 rounded-xl bg-primary space-y-2">
                     <h2 className="text-4xl font-bold">Stations</h2>
-                    <div className="w-full">
-                        <select onChange={handleColorChange} className="select select-secondary select-bordered w-full  bg-transparent">
+                    <div>
+                        <select onChange={handleColorChange} className="select select-secondary w-full select-bordered bg-transparent">
                             <option value="" className='text-black'>All Lines</option>
                             <option value="red" className='text-black'>Red</option>
                             <option value="blue" className='text-black'>Blue</option>

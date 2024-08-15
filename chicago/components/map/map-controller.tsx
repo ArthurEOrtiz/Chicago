@@ -1,25 +1,31 @@
 import { MapAPI } from "./map-api";
 import { MapComponent } from "./map-component";
-import { MarkerComponent } from "./marker-component";
+import { StationMarkerComponent, TrainMarkerComponent } from "./marker-components";
 import { PinComponent } from "./pin-component";
 
 interface MapControllerProps {
+    arrivals: CtaApiResponse | null;
     stations: Station[];
     onStationClick: (station: Station, index: number) => void; 
 }
-const MapController: React.FC<MapControllerProps> = ({ stations, onStationClick }) => {
+const MapController: React.FC<MapControllerProps> = ({ stations, arrivals, onStationClick }) => {
     return (
         <MapAPI>
             <MapComponent>
                 {stations.map((station: Station, index: number) => {
                     return (
-                        <MarkerComponent
+                        <StationMarkerComponent
                             key={index}
                             station={station}
                             onClick={() => onStationClick(station, index)}
                         >
                             <PinComponent station={station} />
-                        </MarkerComponent>  
+                        </StationMarkerComponent>  
+                    );
+                })}
+                {arrivals?.ctatt.eta.map((eta: Eta, index: number) => {
+                    return (
+                        <TrainMarkerComponent key={index} train={eta} />
                     );
                 })}
             </MapComponent>
