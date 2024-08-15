@@ -18,7 +18,7 @@ const MapAPI: React.FC<MapAPIProps> = ({ children }) => {
 
         >
             {isLoaded ? children : (
-                <div className="flex justify-center items-center h-full">
+                <div className="flex justify-center items-center">
                     <span className='loading loading-spinner loading-lg'></span>
                 </div>
             )}

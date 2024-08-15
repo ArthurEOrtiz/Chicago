@@ -22,7 +22,7 @@ const PinComponent: React.FC<PinComponentProps> = ({ station }) => {
         });
 
         if (colors.size > 1) {
-            if (colors.has('purple') && colors.has('purple express')) {
+            if (colors.has('purple') && colors.has('purple express') && colors.size === 2) {
                 return {
                     background: '#522398',
                     borderColor: '#4b004b',

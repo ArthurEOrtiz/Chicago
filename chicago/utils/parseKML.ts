@@ -36,10 +36,13 @@ async function parseKML(url: string): Promise<PolylineData[]> {
         });
     }
 
-    console.log('Style Map:', styleMap);
+    //console.log('Style Map:', styleMap);
 
     // Log the entire document structure to find the correct path to Placemark
     // console.log('Document structure:', JSON.stringify(document, null, 2));
+
+    // Override LineStyle013 to be white
+    styleMap['#LineStyle013'] = 'FFFFFFFF';
 
     const folder = document.Folder?.[0];
     if (!folder) {

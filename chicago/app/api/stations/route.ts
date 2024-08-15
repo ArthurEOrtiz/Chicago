@@ -17,12 +17,24 @@ export async function GET(req: NextRequest) {
                 station_descriptive_name: stop.station_descriptive_name,
                 map_id: stop.map_id,
                 location: stop.location,
+                colors: new Set<string>(),
                 stops: []
             };
         }
         acc[mapId].stops.push(stop);
+        // Add color information
+        ['red', 'blue', 'g', 'brn', 'p', 'pexp', 'y', 'pnk', 'o'].forEach(color => {
+            if (stop[color]) {
+                acc[mapId].colors.add(color);
+            }
+        });
         return acc;
     }, {});
+
+    // Convert colors Set to Array
+    Object.values(stations).forEach((station: any) => {
+        station.colors = Array.from(station.colors);
+    });
 
     return NextResponse.json(Object.values(stations));
 }
