@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 export async function GET(req: NextRequest) {
     const { searchParams } = new URL(req.url);
     const mapId = searchParams.get('mapId');
-    const apiKey = process.env.NEXT_PUBLIC_CTA_API_KEY;
+    const apiKey = process.env.CTA_API_KEY;
 
     if (!apiKey) {
         return NextResponse.json({ error: 'API key not found' }, { status: 500 });
