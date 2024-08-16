@@ -21,23 +21,23 @@ const Eta: React.FC<etaProps> = ({ eta }) => {
 
         switch (route) {
             case 'Red':
-                return 'bg-red-500';
+                return 'bg-cta-red';
             case 'Blue':
-                return 'bg-blue-500';
+                return 'bg-cta-blue';
             case 'Brn':
-                return 'bg-yellow-700';
+                return 'bg-cta-brown';
             case 'G':
-                return 'bg-green-500';
+                return 'bg-cta-green';
             case 'Org':
-                return 'bg-orange-500';
+                return 'bg-cta-orange';
             case 'P':
-                return 'bg-purple-500';
+                return 'bg-cta-purple';
             case 'Pink':
-                return 'bg-pink-500';
+                return 'bg-cta-pink';
             case 'Y':
-                return 'bg-yellow-500';
+                return 'bg-cta-yellow';
             default:
-                return 'bg-gray-500';
+                return 'bg-cta-gray';
         }
     }
 
@@ -51,15 +51,20 @@ const Eta: React.FC<etaProps> = ({ eta }) => {
     const etaMinutes = calculateEtaMinutes(eta.arrT);
 
     return (
-        <div className={`p-2 rounded-xl ${routeToColor(eta.rt)}`}>
-            <h3 className="text-lg font-bold">{eta.destNm}</h3>
+        <div className={`p-3 rounded-xl h-22 ${routeToColor(eta.rt)}`}>
             <div className='flex justify-between'>
-                <p className="text-white">{etaMinutes} minutes</p>
-                {eta.isDly === '1' && <p className="text-white">Delayed</p>}
-                {eta.isApp === '1' && <p className="text-white">Approaching</p>}
+                <h3 className=" text-white text-sm">Route #{eta.rn} to</h3>
             </div>
             <div className='flex justify-between'>
-                
+                <h3 className="text-xl text-white font-bold">{eta.destNm}</h3>
+                {etaMinutes > 0 ? (  
+                    <p className="text-xl text-white font-bold">{etaMinutes} min</p>
+                ) : (
+                    <p className="text-xl text-white font-bold">Approaching</p>
+                )}
+            </div>
+            <div className='flex justify-between'>
+                {eta.isDly === '1' && <p className="text-white">Delayed</p>}
             </div>
         </div>
     );
