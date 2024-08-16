@@ -1,8 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(req: NextRequest) {
-    const url = req.nextUrl;
-    const mapId = url.searchParams.get('mapId');
+    const { searchParams } = new URL(req.url);
+    const mapId = searchParams.get('mapId');
     const apiKey = process.env.NEXT_PUBLIC_CTA_API_KEY;
 
     if (!apiKey) {
