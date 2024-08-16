@@ -75,9 +75,10 @@ jobs:
             ${{ runner.os }}-nextjs-${{ hashFiles('chicago/**/package-lock.json', 'chicago/**/yarn.lock') }}-
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
+        working-directory: chicago
       - name: Build with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
-        working-directory: chicago  
+        working-directory: chicago
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
