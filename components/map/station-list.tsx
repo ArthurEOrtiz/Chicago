@@ -23,4 +23,6 @@ const StationList = forwardRef<HTMLDivElement, StationListProps>(({ stations, se
     );
 });
 
+StationList.displayName = 'StationList';    
+
 export { StationList };
