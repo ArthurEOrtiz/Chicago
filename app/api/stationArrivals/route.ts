@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(req: NextRequest) {
-    const { searchParams } = new URL(req.url);
+    const { searchParams } = req.nextUrl;
     const mapId = searchParams.get('mapId');
     const apiKey = process.env.NEXT_PUBLIC_CTA_API_KEY;
 
