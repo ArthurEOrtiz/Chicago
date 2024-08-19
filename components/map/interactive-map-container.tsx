@@ -78,6 +78,7 @@ const InteractiveMapContainer: React.FC = () => {
                     <MapController 
                         arrivals={arrivals}
                         stations={filteredStations} 
+                        selectedStation={selectedStation}   
                         onStationClick={handleStationClick}
                     />
                 </div>

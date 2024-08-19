@@ -9,7 +9,7 @@ const ArrivalsList: React.FC<ArrivalsListProps> = ({ loadingArrivals, arrivals }
     return (
         <>
             {loadingArrivals ? (
-                <div className="p-2 rounded-xl  bg-gray-500 flex justify-center">
+                <div className="p-2 h-[90px] rounded-xl bg-gray-500 flex justify-center">
                     <span className='loading loading-spinner loading-lg'></span>
                 </div>
             ) : arrivals ? (
@@ -23,8 +23,8 @@ const ArrivalsList: React.FC<ArrivalsListProps> = ({ loadingArrivals, arrivals }
                     </div>
                 )
             ) : (
-                <div className="p-2  rounded-xl bg-warning-content">
-                    <p className='text-warning'>Select a station on the map or the list.</p>
+                <div className="p-2 h-[90px] flex items-center justify-center rounded-xl bg-warning-content">
+                    <p className='text-warning'>Select a station on the map, or select one from the list.</p>
                 </div>
             )}
         </>

@@ -1,14 +1,14 @@
 import { MapAPI } from "./map-api";
 import { MapComponent } from "./map-component";
 import { StationMarkerComponent, TrainMarkerComponent } from "./marker-components";
-import { PinComponent } from "./pin-component";
 
 interface MapControllerProps {
     arrivals: CtaApiResponse | null;
     stations: Station[];
+    selectedStation: Station | null;
     onStationClick: (station: Station, index: number) => void; 
 }
-const MapController: React.FC<MapControllerProps> = ({ stations, arrivals, onStationClick }) => {
+const MapController: React.FC<MapControllerProps> = ({ stations, selectedStation, arrivals, onStationClick }) => {
     return (
         <MapAPI>
             <MapComponent>
@@ -17,10 +17,9 @@ const MapController: React.FC<MapControllerProps> = ({ stations, arrivals, onSta
                         <StationMarkerComponent
                             key={index}
                             station={station}
+                            selectedStation={selectedStation}
                             onClick={() => onStationClick(station, index)}
-                        >
-                            <PinComponent station={station} />
-                        </StationMarkerComponent>  
+                        />
                     );
                 })}
                 {arrivals?.ctatt.eta.map((eta: Eta, index: number) => {

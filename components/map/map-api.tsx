@@ -28,7 +28,6 @@ const MapAPI: React.FC<MapAPIProps> = ({ children }) => {
         return (
             <div className="flex justify-center items-center">
                 <span className='loading loading-spinner loading-lg'></span>
-                <p className="text-lg">Loading API key...</p>
             </div>
         );
     }
