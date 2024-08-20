@@ -3,29 +3,22 @@ import React, { useState, useRef, useEffect } from 'react';
 import { MapController } from '@/components/map/map-controller';
 import { getStationArrivals } from '@/utils/getStationArrivals';
 import ErrorModal from '../modals/error';
-import { getStationData } from '@/utils/getStationData';
 import { ArrivalsList } from './arrivals-list';
 import { StationList } from './station-list';
 
-const InteractiveMapContainer: React.FC = () => {
-    const [stations, setStations] = useState<Station[]>([]);
+interface InteractiveMapContainerProps {
+    stations: Station[];
+}
+
+const InteractiveMapContainer: React.FC<InteractiveMapContainerProps> = ({ stations }) => {
+    
     const [selectedStation, setSelectedStation] = useState<Station | null>(null);
     const [arrivals, setArrivals] = useState<CtaApiResponse | null>(null);
     const [loadingArrivals, setLoadingArrivals] = useState<boolean>(false);
-    const [loadingStations, setLoadingStations] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
     const [selectedColor, setSelectedColor] = useState<string | null>(null);
     const stationRefs = useRef<(HTMLDivElement | null)[]>([]);
     const containerRef = useRef<HTMLDivElement | null>(null);
-
-    useEffect(() => {
-        getStationData()
-            .then(data => {
-                setStations(data);
-            })
-            .catch(error => setError(error))
-            .finally(() => setLoadingStations(false));
-    }, []);
 
     useEffect(() => {
         if (!selectedStation) return;
@@ -97,11 +90,7 @@ const InteractiveMapContainer: React.FC = () => {
                             <option value="o" className='text-black'>Orange</option>
                         </select>
                     </div>
-                    {loadingStations && 
-                        <div className="flex justify-center items-center h-full ">
-                            <span className='loading loading-spinner loading-lg'></span>
-                        </div>
-                    }
+                  
                     <div ref={containerRef} className="h-[42vh] overflow-y-auto">
                         {filteredStations && (
                             <StationList 

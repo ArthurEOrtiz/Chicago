@@ -65,7 +65,7 @@ export const StationMarkerComponent: React.FC<StationMarkerComponentProps> = ({s
             zIndex={1}
         >
             <div className="flex items-center justify-center">
-                <div className={` rounded-full ${stationToColor(station)}  ${selectedStation && selectedStation.map_id === station.map_id ? 'border-2 border-white w-4 h-4': 'w-2 h-2'}`}></div>
+                <div className={` rounded-full ${stationToColor(station)}  ${selectedStation && selectedStation.map_id === station.map_id ? 'border-2 border-white w-6 h-6': 'w-3 h-3'}`}></div>
             </div>
         </AdvancedMarker>
     );

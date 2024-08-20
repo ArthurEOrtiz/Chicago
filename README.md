@@ -1,4 +1,8 @@
 # Chicago 
+
+
+## Technology Used
+- NextJs
 - diasyui
 - tailwindCSS
 - React-Google-Maps, https://visgl.github.io/react-google-maps/

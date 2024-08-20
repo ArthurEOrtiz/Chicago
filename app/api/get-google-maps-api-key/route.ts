@@ -7,6 +7,5 @@ export async function GET(req: NextRequest) {
         return NextResponse.json({ error: 'API key not found' }, { status: 500 });
     }
 
-    //console.log('API key:', apiKey);
     return NextResponse.json({ apiKey }, { status: 200 });
 }
