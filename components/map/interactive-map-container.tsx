@@ -57,6 +57,10 @@ const InteractiveMapContainer: React.FC<InteractiveMapContainerProps> = ({ stati
 
     const handleColorChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setSelectedColor(event.target.value);
+        setSelectedStation(null);
+        stationRefs.current = [];
+        containerRef.current?.scrollTo({ top: 0, behavior: 'smooth' });
+        setArrivals(null);
     };
 
     const filteredStations = selectedColor
@@ -66,16 +70,48 @@ const InteractiveMapContainer: React.FC<InteractiveMapContainerProps> = ({ stati
     return (
         <div className='space-y-2'>
             {/* Main container */}  
-            <div className="flex flex-col md:flex-row space-x-2">
-                <div className="md:w-2/3">
+            <div className="">
+                <div className="h-[50vh]">
                     <MapController 
                         arrivals={arrivals}
                         stations={filteredStations} 
                         selectedStation={selectedStation}   
                         onStationClick={handleStationClick}
-                    />
+                    >
+                        <div className="p-4 border border-secondary rounded-xl bg-transparent m-2 space-y-2 hidden md:block">
+                            <h2 className="text-4xl font-bold">Stations</h2>
+                            <div>
+                                <select onChange={handleColorChange} className="select select-secondary w-full select-bordered bg-transparent">
+                                    <option value="" className='text-black'>All Lines</option>
+                                    <option value="red" className='text-black'>Red</option>
+                                    <option value="blue" className='text-black'>Blue</option>
+                                    <option value="g" className='text-black'>Green</option>
+                                    <option value="brn" className='text-black'>Brown</option>
+                                    <option value="pexp" className='text-black'>Purple</option>
+                                    <option value="y" className='text-black'>Yellow</option>
+                                    <option value="pnk" className='text-black'>Pink</option>
+                                    <option value="o" className='text-black'>Orange</option>
+                                </select>
+                            </div>
+                        
+                            <div ref={containerRef} className="h-[30vh] max-w-72 overflow-y-auto">
+                                {filteredStations && (
+                                    <StationList 
+                                        stations={filteredStations} 
+                                        selectedStation={selectedStation} 
+                                        ref={(el: HTMLDivElement | null) => {
+                                            if (el) {
+                                                stationRefs.current.push(el);
+                                            }
+                                        }}
+                                        onStationClick={handleStationClick}
+                                    />
+                                )}
+                            </div>
+                        </div>
+                    </MapController>
                 </div>
-                <div className="md:w-1/3 p-4 rounded-xl bg-primary space-y-2">
+                {/* <div className="md:w-1/3 p-4 rounded-xl bg-primary space-y-2">
                     <h2 className="text-4xl font-bold">Stations</h2>
                     <div>
                         <select onChange={handleColorChange} className="select select-secondary w-full select-bordered bg-transparent">
@@ -105,12 +141,13 @@ const InteractiveMapContainer: React.FC<InteractiveMapContainerProps> = ({ stati
                             />
                         )}
                     </div>
-                </div>
+                </div> */}
             </div>
             <div className="bg-secondary rounded-xl p-2 space-y-2  ">
                 <div>
                     {/* Arrivals header */}
                     <h2 className="text-4xl font-bold ml-2">Arrivals</h2>
+                    <p className="text-lg font-bold ml-2">{selectedStation?.station_name}</p>
                 </div>
                 <div>
                     {/* Arrivals main */}

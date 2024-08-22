@@ -44,12 +44,11 @@ const MapComponent: React.FC<MapComponentProps> = ({children}) => {
     <Map 
       mapId={mapId}
       defaultCenter={{ lat: 41.8781, lng: -87.6298 }}
-      defaultZoom={10.5}
+      defaultZoom={11.25}
       streetViewControl={false}
       mapTypeControl={false}
       fullscreenControl={false}
     >
-        
         {children}
     </Map>
   );
