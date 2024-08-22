@@ -63,8 +63,8 @@ const Eta: React.FC<etaProps> = ({ eta }) => {
                     <p className="text-xl text-white font-bold">Approaching</p>
                 )}
             </div>
-            <div className='flex justify-between'>
-                {eta.isDly === '1' && <p className="text-white">Delayed</p>}
+            <div>
+                {eta.isDly === '1' && <p className="text-white font-bold">Delayed</p>}
             </div>
         </div>
     );

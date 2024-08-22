@@ -11,22 +11,22 @@ const MapAPI: React.FC<MapAPIProps> = ({ children }) => {
     const [apiKey, setApiKey] = useState<string | null>(null);
 
     useEffect(() => {
-        const fetchApiKey = async () => {
-            try {
-                const response = await fetch('/api/get-google-maps-api-key');
-                const data = await response.json();
-                setApiKey(data.apiKey);
-            } catch (error) {
-                console.error('Error fetching API key:', error);
-            }
-        };
-
         fetchApiKey();
     }, []);
 
+    const fetchApiKey = async () => {
+        try {
+            const response = await fetch('/api/get-google-maps-api-key');
+            const data = await response.json();
+            setApiKey(data.apiKey);
+        } catch (error) {
+            throw new Error('Error fetching API key');
+        }
+    }
+
     if (!apiKey) {
         return (
-            <div className="flex justify-center items-center">
+            <div className="flex justify-center items-center h-full">
                 <span className='loading loading-spinner loading-lg'></span>
             </div>
         );
@@ -39,7 +39,7 @@ const MapAPI: React.FC<MapAPIProps> = ({ children }) => {
             libraries={['drawing', 'geometry', 'places']}
         >
             {isLoaded ? children : (
-                <div className="flex justify-center items-center">
+                <div className="flex justify-center items-center h-full">
                     <span className='loading loading-spinner loading-lg'></span>
                 </div>
             )}
