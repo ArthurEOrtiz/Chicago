@@ -64,7 +64,7 @@ const Eta: React.FC<etaProps> = ({ eta }) => {
                 )}
             </div>
             <div>
-                {eta.isDly === '1' && <p className="text-error font-bold">Delayed</p>}
+                {eta.isDly === '1' && <p className="text-white font-bold">Delayed</p>}
             </div>
         </div>
     );
