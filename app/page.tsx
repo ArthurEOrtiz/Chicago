@@ -7,7 +7,9 @@ const Home: React.FC = async () => {
   const stations = await getStationData();
   
   return (
+
     <InteractiveMapContainer stations={stations} />
+
   );
 };
 
