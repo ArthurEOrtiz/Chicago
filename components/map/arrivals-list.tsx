@@ -18,7 +18,7 @@ const ArrivalsList: React.FC<ArrivalsListProps> = ({ loadingArrivals, arrivals }
                         <Eta key={index} eta={eta} />
                     ))
                 ) : (
-                    <div className="p-2  rounded-xl bg-error-content">
+                    <div className="p-2 rounded-xl bg-error-content">
                         <p className='text-error'>No arrivals found.</p>
                     </div>
                 )

@@ -4,7 +4,7 @@ import { MapComponent } from "./map-component";
 import { StationMarkerComponent, TrainMarkerComponent } from "./marker-components";
 
 interface MapControllerProps {
-    children: React.ReactNode;
+    children?: React.ReactNode;
     arrivals: CtaApiResponse | null;
     stations: Station[];
     selectedStation: Station | null;
